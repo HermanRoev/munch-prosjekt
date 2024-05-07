@@ -16,6 +16,7 @@
 
 /* Styles for the slider switch */
 .switch {
+    margin-left: 20px; /* Add this line */
   display: inline-block;
   height: 34px;
   position: relative;

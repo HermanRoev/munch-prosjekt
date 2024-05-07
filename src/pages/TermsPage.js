@@ -52,7 +52,6 @@ const TermsPage = () => {
                             for the use of your photograph.
                         </li>
                     </ol>
-                    <div>Read more....</div>
                 </div>
                 <div className="consent-container">
                     <p>I am 13 years old or older and agree to the Terms and Conditions and Privacy Policy. By checking

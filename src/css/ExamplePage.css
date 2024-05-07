@@ -1,31 +1,29 @@
+.pages-container {
+    max-width: 80% !important; /* Adjust to desired max width */
+    max-height: 80% !important; /* Adjust to desired max height */
+    margin: auto; /* Center the container */
+}
+
 .example-container {
+    width: 100%; /* Take up full width of the parent container */
     display: flex;
-    flex-direction: column;
+    justify-content: center;
     align-items: center;
-    background: rgba(0, 0, 0, 0.6); /* Semi-transparent background for legibility */
-    padding: 20px; /* Increased padding for a larger look */
-    border-radius: 10px;
-    color: #fff;
-    margin: 20px auto; /* Adjusted margin for optimal spacing */
-    text-align: center;
-    box-shadow: 0 4px 8px rgba(0,0,0,0.1); /* Added subtle shadow for depth */
+    position: relative; /* Make this a positioned element for absolute positioning of children */
 }
 
-@media (max-width: 768px) {
-    .example-container {
-        padding: 20px;
-        margin: 10px;
-    }
-    /* Add any other adjustments for smaller screens */
+.example-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* Use cover to maintain aspect ratio while filling parent */
 }
 
-.captured-image {
-    width: 30vw; /* Adjust width as needed, could be a specific pixel value or percentage */
-    height: auto; /* Adjust height to maintain aspect ratio, or set a specific height */
-    border-radius: 10px; /* Round corners of the webcam view */
-    object-fit: cover; /* Ensures the video covers the set area without stretching. Alternatives: contain, fill */
-}
-
-.mirrored {
-    transform: scaleX(-1);
+.overlay-image {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 50%;
+    height: 78%;
+    object-fit: contain;
+    transform: translate(-85%, -50%);
 }

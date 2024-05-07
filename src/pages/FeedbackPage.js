@@ -75,7 +75,7 @@ const FeedbackPage = () => {
                     </div>
 
                     <div className="slider-question">
-                        <p>How clear was the message about the potential misuse of personal data?</p>
+                        <p>How likely are you to discuss this topic with friends or family?</p>
                         <div className="slider-container">
                             <input
                                 type="range"
@@ -96,7 +96,7 @@ const FeedbackPage = () => {
                     </div>
 
                     <div className="input-question">
-                        <p>Please provide additional feedback:</p>
+                        <p>How did it feel to see yourself depicted in scenarios you never participated in?</p>
                         <textarea
                             value={userInput}
                             onChange={(e) => setUserInput(e.target.value)}

@@ -19,13 +19,16 @@ const InformationScreen = () => {
                 </div>
 
                 <p className="description">
-                    Transform your selfie into a masterpiece in this captivating art installation.
-                    Experience the fusion of your identity with iconic art styles, sparking conversations
-                    on digital ethics and the power of technology.
+                    Welcome to a unique interactive installation where your selfie becomes the gateway to
+                    unexpected narratives. Here, you will see yourself transformed through advanced digital
+                    technology, exploring the intriguing overlap of real and virtual identities.
+                    This exhibition invites you to consider the fluidity of your digital self and the
+                    profound implications of emerging technologies.
                 </p>
                 <p className="description">
-                    Dive into a world where every selfie tells a story, inviting reflection on our digital
-                    selves. Join this artistic adventure, and see yourself in a new light.
+                    Discover a new perspective on identity and technology in an experience that challenges
+                    and surprises. Join us to uncover the unseen—where your image transcends the everyday
+                    and ventures into new, thought-provoking territories.
                 </p>
                 <div className="button-container">
                     <button className="button" onClick={handleAccept}>PRESS HERE TO TRY!</button>

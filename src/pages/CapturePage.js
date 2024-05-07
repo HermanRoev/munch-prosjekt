@@ -24,59 +24,8 @@ const CapturePage = () => {
         setImageSrc(null);
     };
 
-    const continueWithImage = async () => {
-        // Convert the base64 image to a Blob
-        const response = await fetch(imageSrc);
-        const blob = await response.blob();
-
-        // Create a FormData object
-        const formData = new FormData();
-        formData.append('image', blob);
-
-        // Convert the blob to a base64 string
-        const reader = new FileReader();
-        reader.readAsDataURL(blob);
-        reader.onloadend = function() {
-            const base64data = reader.result;
-
-            // Prepare the data for the API request
-            const data = JSON.stringify({
-                url: base64data,
-                accuracy_boost: 2
-            });
-
-            // Create a new XMLHttpRequest
-            const xhr = new XMLHttpRequest();
-
-            xhr.addEventListener('readystatechange', function () {
-                if (this.readyState === this.DONE) {
-                    const result = JSON.parse(this.responseText);
-
-                    // Check the API response to see if a face was detected
-                    if (result.Detected_faces.length > 0) {
-                        // Get the highest probability among the detected faces
-                        const highestProbability = Math.max(...result.Detected_faces.map(face => face.Probability));
-
-                        // If the highest probability is 80% or more, navigate to the ProcessingPage
-                        // Otherwise, navigate to the FaceNotDetectedPage
-                        if (highestProbability >= 80) {
-                            navigate('/processing', { state: { image: imageSrc } });
-                        } else {
-                            navigate('/noface');
-                        }
-                    } else {
-                        navigate('/noface');
-                    }
-                }
-            });
-
-            xhr.open('POST', 'https://face-detection6.p.rapidapi.com/img/face');
-            xhr.setRequestHeader('content-type', 'application/json');
-            xhr.setRequestHeader('X-RapidAPI-Key', 'b7a4dd7402msh6a00d1b02fe2e16p10645bjsnb395428718bb');
-            xhr.setRequestHeader('X-RapidAPI-Host', 'face-detection6.p.rapidapi.com');
-
-            xhr.send(data);
-        };
+    const continueWithImage = () => {
+        navigate('/processing', { state: { image: imageSrc } });
     };
 
     return (
