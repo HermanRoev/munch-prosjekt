@@ -59,12 +59,12 @@ const CapturePage = () => {
                     <canvas ref={canvasRef} style={{ display: 'none' }}></canvas>
                     {imageSrc ? (
                         <div className="button-container">
-                            <button onClick={retakeImage} className="button">TRY AGAIN</button>
-                            <button onClick={continueWithImage} className="button">CONTINUE</button>
+                            <button onClick={retakeImage} className="form-button">TRY AGAIN</button>
+                            <button onClick={continueWithImage} className="form-button">CONTINUE</button>
                         </div>
                     ) : (
                         <div className="button-container">
-                            <button onClick={capture} className="button">CAPTURE SELFIE</button>
+                            <button onClick={capture} className="form-button">CAPTURE SELFIE</button>
                         </div>
                     )}
                 </div>

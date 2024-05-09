@@ -38,13 +38,3 @@
     transform: scaleX(-1); /* Mirror the webcam and captured image */
 }
 
-.button {
-    margin-top: 30px;
-    padding: 10px 20px;
-    background-color: #007BFF;
-    color: white;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    font-size: 16px;
-}

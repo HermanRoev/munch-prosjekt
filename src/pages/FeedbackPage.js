@@ -57,7 +57,7 @@ const FeedbackPage = () => {
                 <div className="header-container">
                     <h1>Rate Your Experience</h1>
                 </div>
-                <form>
+                <form onSubmit={handleSubmit}>
                     <div className="input-question">
                         <h2>Participant Information:</h2>
                         <h2>Age:</h2>
@@ -245,7 +245,7 @@ const FeedbackPage = () => {
                     </div>
 
                     <div className="button-container">
-                        <button className="form-button" onClick={handleSubmit}>Submit Feedback</button>
+                        <button className="form-button" type={"submit"}>Submit Feedback</button>
                     </div>
                 </form>
             </div>
