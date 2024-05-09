@@ -20,14 +20,31 @@ const FeedbackPage = () => {
     const [improvementSuggestion, setImprovementSuggestion] = useState('');
     const [rating, setRating] = useState(null);
 
-    const handleSubmit = (event) => {
+    const handleSubmit = async (event) => {
         event.preventDefault();
         const feedbackData = {
             age, gender, socialMediaUsage, privacyConcern, deepfakeAwareness, surprise,
             discomfort, perceptionChange, awarenessImpact, improvementSuggestion, rating
         };
-        console.log(feedbackData);
-        navigate('/'); // Adjust as necessary for your routing
+        try {
+            const response = await fetch('http://178.232.54.31:8189/submit', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(feedbackData)
+            });
+
+            if (!response.ok) {
+                throw new Error('Network response was not ok');
+            }
+
+            const data = await response.json();
+            console.log(data);
+            navigate('/'); // Adjust as necessary for your routing
+        } catch (error) {
+            console.error('There was a problem with the fetch operation:', error);
+        }
     };
 
     const ratingIcons = [
