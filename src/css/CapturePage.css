@@ -13,41 +13,38 @@
 
 @media (max-width: 768px) {
     .capture-container {
-        padding: 20px;
-        margin: 10px;
+        padding: 10px;
+        margin: 10px auto;
     }
-    /* Add any other adjustments for smaller screens */
 }
 
 .webcam-container {
     position: relative;
-    margin: auto; /* Centering it if needed */
+    margin: auto;
     display: flex;
     justify-content: center;
     align-items: center;
 }
 
-.webcam-view {
-    width: 30vw; /* Adjust width as needed, could be a specific pixel value or percentage */
-    height: auto; /* Adjust height to maintain aspect ratio, or set a specific height */
-    border-radius: 10px; /* Round corners of the webcam view */
-    object-fit: cover; /* Ensures the video covers the set area without stretching. Alternatives: contain, fill */
+.webcam-view, .captured-image {
+    max-width: 600px;
+    width: 100%;  /* Full width but with respect to parent's max-width */
+    height: auto; /* Maintain aspect ratio */
+    border-radius: 10px;
+    object-fit: contain; /* Ensure content is resized to fit within bounds */
 }
 
 .mirrored {
-    transform: scaleX(-1);
-}
-
-.overlay {
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    width: 100%; /* Make the overlay the same size as the webcam video */
-    height: auto;
+    transform: scaleX(-1); /* Mirror the webcam and captured image */
 }
 
 .button {
     margin-top: 30px;
+    padding: 10px 20px;
+    background-color: #007BFF;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
 }
