@@ -34,8 +34,8 @@ const FeedbackPage = () => {
         { value: 'Terrible', icon: faAngry, color: 'red' },
         { value: 'Bad', icon: faFrown, color: 'orange' },
         { value: 'So-so', icon: faMeh, color: 'yellow' },
-        { value: 'Good', icon: faSmile, color: 'lightgreen' },
-        { value: 'Superb', icon: faGrinStars, color: 'green' },
+        { value: 'Good', icon: faSmile, color: '#4CAF50' },
+        { value: 'Superb', icon: faGrinStars, color: '#0F0' },
     ];
 
     const genderOptions = [
@@ -53,48 +53,49 @@ const FeedbackPage = () => {
 
     return (
         <PageContainer>
-            <div className="pages-container">
-                <div className="header-container">
-                    <h1>Rate Your Experience</h1>
-                </div>
-                <form onSubmit={handleSubmit}>
-                    <div className="input-question">
-                        <h2>Participant Information:</h2>
-                        <h2>Age:</h2>
-                        <AgeSelector onChange={(newAge) => setAge(newAge)}/>
-                        <h2>Gender:</h2>
-                        <div className="button-container">
-                            {genderOptions.map((option) => (
-                                <button
-                                    key={option.value}
-                                    onClick={(e) => {
-                                        e.preventDefault();
-                                        setGender(option.value);
-                                    }}
-                                    className={`select-button ${gender === option.value ? 'selected' : ''}`}
-                                >
-                                    {option.label}
-                                </button>
-                            ))}
-                        </div>
+            <div className="pages-container" style={{ margin: 0, padding: 0 }}>
+                <div className="feedback-container">
+                    <div className="header-container">
+                        <h1>Participant feedback</h1>
                     </div>
-
-                    <div>
-                        <h2>How was your overall experience?</h2>
-                        <div className="rating">
-                            {ratingIcons.map((item, index) => (
-                                <label key={index}>
-                                    <FontAwesomeIcon
-                                        icon={item.icon}
-                                        size="3x"
-                                        color={rating === item.value ? item.color : 'gray'}
-                                        onClick={() => setRating(item.value)}
-                                        className={`rating-icon rating-icon-${index}`}
-                                    />
-                                    <span>{item.value}</span>
-                                </label>
-                            ))}
+                    <form onSubmit={handleSubmit}>
+                        <div className="input-question">
+                            <h2>Participant Information:</h2>
+                            <h2>Age:</h2>
+                            <AgeSelector onChange={(newAge) => setAge(newAge)}/>
+                            <h2>Gender:</h2>
+                            <div className="button-container">
+                                {genderOptions.map((option) => (
+                                    <button
+                                        key={option.value}
+                                        onClick={(e) => {
+                                            e.preventDefault();
+                                            setGender(option.value);
+                                        }}
+                                        className={`select-button ${gender === option.value ? 'selected' : ''}`}
+                                    >
+                                        {option.label}
+                                    </button>
+                                ))}
+                            </div>
                         </div>
+
+                        <div>
+                            <h2>How was your overall experience?</h2>
+                            <div className="rating">
+                                {ratingIcons.map((item, index) => (
+                                    <label key={index}>
+                                        <FontAwesomeIcon
+                                            icon={item.icon}
+                                            size="3x"
+                                            color={rating === item.value ? item.color : 'gray'}
+                                            onClick={() => setRating(item.value)}
+                                            className={`rating-icon rating-icon-${index}`}
+                                        />
+                                        <span>{item.value}</span>
+                                    </label>
+                                ))}
+                            </div>
                     </div>
 
                     <div className="slider-question">
@@ -248,6 +249,7 @@ const FeedbackPage = () => {
                         <button className="form-button" type={"submit"}>Submit Feedback</button>
                     </div>
                 </form>
+            </div>
             </div>
         </PageContainer>
     );

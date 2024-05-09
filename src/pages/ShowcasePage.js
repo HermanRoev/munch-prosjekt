@@ -8,11 +8,10 @@ const ShowcasePage = ({ inputImage }) => {
     const navigate = useNavigate();
     const { state } = useLocation();
     const overlay = inputImage || state?.image
-    const showcase = showcase;
 
     const handleAccept = () => {
         // Navigate to the feedback when the user presses continue
-        navigate('/showcase');
+        navigate('/feedback');
     };
 
     return (

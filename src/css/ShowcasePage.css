@@ -10,12 +10,12 @@
 .showcase-image {
     width: 95%;
     height: 95%;
-    object-fit: contain; /* Use cover to maintain aspect ratio while filling parent */
+    object-fit: cover; /* Use cover to maintain aspect ratio while filling parent */
 }
 
 .overlay-image {
     position: absolute;
-    right: 45.5%;
+    right: 44.2%;
     width: 50%;
     height: 88%;
     object-fit: contain;

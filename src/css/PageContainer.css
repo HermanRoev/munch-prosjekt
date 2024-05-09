@@ -18,14 +18,15 @@
     justify-content: flex-start;
     align-content: center;
     max-height: 100vh;
-    padding: 40px;
+    width: 100vw;
+    position: relative;
     border-radius: 10px;
     margin: 1% 12.5% 1% 12.5%;
     text-align: left;
     background: none;
     overflow: auto;
-    scrollbar-width: none; /* For Firefox */
-    -ms-overflow-style: none;  /* For Internet Explorer and Edge */
+    scrollbar-width: none;
+    -ms-overflow-style: none;
 }
 
 .pages-container::-webkit-scrollbar {
@@ -48,6 +49,7 @@ h1 {
 p {
     font-size: calc(1em + 0.5vw); /* Increase font size as viewport width increases */
 }
+
 .description {
     line-height: 1.5;
     text-align: left;

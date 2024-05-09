@@ -43,12 +43,12 @@ const ProcessingPage = ({ inputImage }) => {
             };
             processImage();
         }
-    }, [image]); // Dependency on image ensures this runs only when image changes
+    }, [processedImage, image]); // Dependency on image ensures this runs only when image changes
 
     useEffect(() => {
         if (processedImage) {
             // Navigate to the next page with the processed image
-            navigate('/example', { state: { image: processedImage } });
+            navigate('/showcase', { state: { image: processedImage } });
         }
     }, [processedImage, navigate]);
 
