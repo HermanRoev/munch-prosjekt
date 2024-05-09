@@ -39,7 +39,7 @@ const ProcessingPage = ({ mockImage }) => {
     // Add a new useEffect hook for the delay and navigation
     useEffect(() => {
         const timer = setTimeout(() => {
-            navigate('/feedback'); // replace '/feedback' with the actual path to the FeedbackPage
+            navigate('/showcase'); // replace '/feedback' with the actual path to the FeedbackPage
         }, 10000); // 10 seconds
 
         // Cleanup function to clear the timeout if the component unmounts before the timeout finishes

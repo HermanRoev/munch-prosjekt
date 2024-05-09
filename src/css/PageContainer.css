@@ -3,6 +3,7 @@
     justify-content: center;
     align-items: center;
     height: 100vh; /* Use full viewport height */
+    width: 100vw;
     padding: 20px;
     box-sizing: border-box;
     background: url('../images/background_ai_project.png') no-repeat center center fixed;
@@ -15,25 +16,33 @@
     display: flex;
     flex-direction: column;
     justify-content: center;
-    max-width: 60vw; /* Adjust width as necessary */
+    align-content: center;
     max-height: 100vh;
     padding: 40px;
     border-radius: 10px;
-    margin: auto;
+    margin: 1% 12.5% 1% 12.5%;
     text-align: left;
     background: none;
+    overflow: auto;
+    scrollbar-width: none; /* For Firefox */
+    -ms-overflow-style: none;  /* For Internet Explorer and Edge */
+}
+
+.pages-container::-webkit-scrollbar {
+    display: none; /* For Chrome, Safari and Opera */
 }
 
 .header-container {
+    position: relative;
     width: 100%;
     text-align: center;
-    padding: 20px 0; /* Adjust as necessary */
 }
 
 h1 {
-    margin-top: 0;
+    margin: 1%;
     font-size: 4em; /* or your preferred size */
     text-align: center;
+    color: white;
 }
 
 p {
