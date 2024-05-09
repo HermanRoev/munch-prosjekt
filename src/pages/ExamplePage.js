@@ -1,12 +1,12 @@
 import React from 'react';
-import {useLocation, useNavigate} from 'react-router-dom';
+import { useNavigate, useLocation } from 'react-router-dom';
 import PageContainer from '../components/PageContainer';
 import '../css/ExamplePage.css'; // Make sure the CSS file is in the same directory
-import exampleTestImage from '../images/example_test.png'; // Import the image directly
-import overlayImage from '../images/gen_test.png'; // Import the overlay image
 
-const ExamplePage = () => {
+const ExamplePage = ({ inputImage }) => {
     const navigate = useNavigate();
+    const { state } = useLocation();
+    const image = inputImage || state?.image
 
     const handleAccept = () => {
         // Navigate to the feedback when the user presses continue
@@ -21,8 +21,7 @@ const ExamplePage = () => {
                 </div>
 
                 <div className="example-container">
-                    <img src={exampleTestImage} alt="Test image" className="example-image"/> {/* Use the imported image here */}
-                    <img src={overlayImage} alt="Overlay image" className="overlay-image"/> {/* Add the overlay image */}
+                    <img src={image} alt="Test image" className="example-image"/> {/* Use the imported image here */}
                 </div>
                 <div className="button-container">
                     <button className="button" onClick={handleAccept}>PRESS HERE FOR FEEDBACK!</button>
