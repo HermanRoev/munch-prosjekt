@@ -3,6 +3,7 @@
     justify-content: center;
     align-items: center;
     height: 100vh; /* Use full viewport height */
+    width: 100vw;
     padding: 20px;
     box-sizing: border-box;
     background: url('../images/background_ai_project.png') no-repeat center center fixed;
@@ -14,26 +15,34 @@
 .pages-container {
     display: flex;
     flex-direction: column;
-    justify-content: center;
-    max-width: 60vw; /* Adjust width as necessary */
+    justify-content: flex-start;
+    align-content: center;
     max-height: 100vh;
     padding: 40px;
     border-radius: 10px;
-    margin: auto;
+    margin: 1% 12.5% 1% 12.5%;
     text-align: left;
     background: none;
+    overflow: auto;
+    scrollbar-width: none; /* For Firefox */
+    -ms-overflow-style: none;  /* For Internet Explorer and Edge */
+}
+
+.pages-container::-webkit-scrollbar {
+    display: none; /* For Chrome, Safari and Opera */
 }
 
 .header-container {
+    position: relative;
     width: 100%;
     text-align: center;
-    padding: 20px 0; /* Adjust as necessary */
 }
 
 h1 {
-    margin-top: 0;
+    margin: 1%;
     font-size: 4em; /* or your preferred size */
     text-align: center;
+    color: white;
 }
 
 p {
@@ -47,42 +56,28 @@ p {
 .button-container {
     display: flex;
     justify-content: center;
+    margin: 20px;
+    gap: 10px;
 }
 
-.button {
-    text-align: left;
-    /* rest of your button styles... */
+
+.form-button {
+    background-color: transparent; /* Clear fill */
+    color: white; /* White text */
+    border: 2px solid white; /* White border */
+    padding: 10px 18px; /* Padding for better touch area */
+    font-size: 20px; /* Readable font size */
+    cursor: pointer; /* Cursor indicates it's clickable */
+    transition: background-color 0.3s, color 0.3s; /* Smooth transition for color changes */
 }
 
-.button {
-    background-color: #6b9488; /* Updated background color */
-    color: white; /* Keeps text color white for contrast */
-    border: none; /* No border for a cleaner look */
-    padding: 0.9375em 2em; /* Adjusted padding to em for consistency */
-    text-align: center; /* Keeps text aligned to the center */
-    text-decoration: none; /* No text decoration */
-    font-weight: bold; /* Bold font for emphasis */
-    display: inline-block; /* Allows the button to sit inline with other elements */
-    font-size: 1.25em; /* Adjusted font size to em for relative sizing */
-    margin: 0.25em 0.125em; /* Adjusted margin to em for consistency */
-    cursor: pointer; /* Cursor to indicate clickable area */
-    border-radius: 0.625em; /* Adjusted border-radius to em for a consistent look */
-    box-shadow: 0 0.125em 0.3125em rgba(0,0,0,0.2); /* Subtle shadow for depth, adjusted to em */
-    transition: background-color 0.3s ease, box-shadow 0.2s ease; /* Smooth transition for hover and active states */
+.form-button.selected {
+    background-color: rgba(255, 255, 255, 0.5); /* White fill on select */
+    color: #0F0; /* Green text when selected */
+    font-weight: bold;
 }
 
-.button:hover {
-    background-color: #627d72; /* Slightly darker shade on hover for interaction feedback */
-    box-shadow: 0 0.25em 0.5em rgba(0,0,0,0.25); /* Adjusted box-shadow for hover to em */
+.form-button:hover {
+    background-color: rgba(255, 255, 255, 0.5); /* White fill on hover */
+    color: #0F0; /* Green text on hover */
 }
-
-.button:active {
-    background-color: #5d7466; /* Even darker shade when clicked, maintaining the style */
-    box-shadow: 0 0.0625em 0.1875em rgba(0,0,0,0.2); /* Adjusted box-shadow for active to em */
-    transform: translateY(0.125em); /* Adjusted transform to em for a consistent "pushed" effect */
-}
-
-.button-container {
-    margin-top: 1em; /* Adjusted margin for spacing */
-}
-

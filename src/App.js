@@ -6,7 +6,7 @@ import ProcessingPage from "./pages/ProcessingPage";
 import FaceNotDetectedPage from "./pages/FaceNotDetectedPage";
 import FeedbackPage from "./pages/FeedbackPage";
 import PageContainer from "./components/PageContainer";
-import ExamplePage from "./pages/ExamplePage";
+import ShowcasePage from "./pages/ShowcasePage";
 
 function App() {
   return (
@@ -18,7 +18,7 @@ function App() {
             <Route path="/capture" element={<CapturePage />} />
             <Route path="/processing" element={<ProcessingPage />} />
             <Route path="/noface" element={<FaceNotDetectedPage />} />
-            <Route path="/example" element={<ExamplePage />} />
+            <Route path="/showcase" element={<ShowcasePage />} />
             <Route path="/feedback" element={<FeedbackPage />} />
           </Routes>
         </PageContainer>

@@ -1,22 +1,33 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import PageContainer from '../components/PageContainer';
+import AgeSelector  from "../components/AgeSelector";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faAngry, faFrown, faMeh, faSmile, faGrinStars } from '@fortawesome/free-regular-svg-icons';
-import '../css/FeedbackPage.css'; // Make sure the CSS file is in the same directory
+import '../css/FeedbackPage.css';
 
 const FeedbackPage = () => {
     const navigate = useNavigate();
+    const [age, setAge] = useState(null);
+    const [gender, setGender] = useState('');
+    const [socialMediaUsage, setSocialMediaUsage] = useState(0);
+    const [privacyConcern, setPrivacyConcern] = useState(0);
+    const [deepfakeAwareness, setDeepfakeAwareness] = useState(0);
+    const [surprise, setSurprise] = useState(0);
+    const [discomfort, setDiscomfort] = useState(0);
+    const [perceptionChange, setPerceptionChange] = useState('');
+    const [awarenessImpact, setAwarenessImpact] = useState(0);
+    const [improvementSuggestion, setImprovementSuggestion] = useState('');
     const [rating, setRating] = useState(null);
-    const [reflection, setReflection] = useState(50);
-    const [clarity, setClarity] = useState(50);
-    const [userInput, setUserInput] = useState(''); // New state variable for the user input
 
     const handleSubmit = (event) => {
         event.preventDefault();
-        const feedbackData = { rating, reflection, clarity, userInput };
-        console.log(feedbackData); // Replace with a POST request to your server
-        navigate('/'); // Navigate to a thank you page or back home
+        const feedbackData = {
+            age, gender, socialMediaUsage, privacyConcern, deepfakeAwareness, surprise,
+            discomfort, perceptionChange, awarenessImpact, improvementSuggestion, rating
+        };
+        console.log(feedbackData);
+        navigate('/'); // Adjust as necessary for your routing
     };
 
     const ratingIcons = [
@@ -27,85 +38,214 @@ const FeedbackPage = () => {
         { value: 'Superb', icon: faGrinStars, color: 'green' },
     ];
 
+    const genderOptions = [
+        { label: "Male", value: "male" },
+        { label: "Female", value: "female" },
+        { label: "Other", value: "other" },
+        { label: "Prefer not to say", value: "prefer_not_to_say" }
+    ];
+
+    const awarenessOptions = [
+        { label: "Ja", value: "yes" },
+        { label: "Nei", value: "no" },
+        { label: "Usikker", value: "unsure" },
+    ];
+
     return (
         <PageContainer>
             <div className="pages-container">
                 <div className="header-container">
                     <h1>Rate Your Experience</h1>
                 </div>
+                <form>
+                    <div className="input-question">
+                        <h2>Participant Information:</h2>
+                        <h2>Age:</h2>
+                        <AgeSelector onChange={(newAge) => setAge(newAge)}/>
+                        <h2>Gender:</h2>
+                        <div className="button-container">
+                            {genderOptions.map((option) => (
+                                <button
+                                    key={option.value}
+                                    onClick={(e) => {
+                                        e.preventDefault();
+                                        setGender(option.value);
+                                    }}
+                                    className={`select-button ${gender === option.value ? 'selected' : ''}`}
+                                >
+                                    {option.label}
+                                </button>
+                            ))}
+                        </div>
+                    </div>
 
-                <form onSubmit={handleSubmit}>
                     <div>
-                        <p>How was your overall experience?</p>
+                        <h2>How was your overall experience?</h2>
                         <div className="rating">
                             {ratingIcons.map((item, index) => (
                                 <label key={index}>
                                     <FontAwesomeIcon
                                         icon={item.icon}
-                                        size="3x" // Adjust the size of the icon
+                                        size="3x"
                                         color={rating === item.value ? item.color : 'gray'}
                                         onClick={() => setRating(item.value)}
                                         className={`rating-icon rating-icon-${index}`}
                                     />
-                                    <span>{item.value}</span> {/* Add this line */}
+                                    <span>{item.value}</span>
                                 </label>
                             ))}
                         </div>
                     </div>
 
                     <div className="slider-question">
-                        <p>Did it make you reflect on image misusage and deepfake manipulation?</p>
+                        <h2>Hvor ofte bruker du sosiale medier?</h2>
                         <div className="slider-container">
                             <input
                                 type="range"
                                 min="0"
                                 max="100"
-                                value={reflection}
-                                step="10" // This sets the slider to move in increments of 10%
+                                step="10"
+                                value={socialMediaUsage}
+                                style={{ '--slider-percentage': `${socialMediaUsage}%` }}
                                 onChange={(e) => {
-                                    setReflection(e.target.value);
+                                    setSocialMediaUsage(e.target.value);
                                     e.target.style.setProperty('--slider-percentage', `${e.target.value}%`);
                                 }}
                             />
                             <div className="slider-labels">
-                                <span>Not at all!</span>
-                                <span>Very much!</span>
+                                <span>Sjelden eller aldri</span>
+                                <span>Flere ganger om dagen</span>
                             </div>
                         </div>
                     </div>
 
                     <div className="slider-question">
-                        <p>How likely are you to discuss this topic with friends or family?</p>
+                        <h2>Hvor bekymret er du for personvern på internett?</h2>
                         <div className="slider-container">
                             <input
                                 type="range"
                                 min="0"
                                 max="100"
-                                value={clarity}
-                                step="10" // This sets the slider to move in increments of 10%
+                                step="10"
+                                value={privacyConcern}
+                                style={{ '--slider-percentage': `${privacyConcern}%` }}
                                 onChange={(e) => {
-                                    setClarity(e.target.value);
+                                    setPrivacyConcern(e.target.value);
                                     e.target.style.setProperty('--slider-percentage', `${e.target.value}%`);
                                 }}
                             />
                             <div className="slider-labels">
-                                <span>Not at all!</span>
-                                <span>Very much!</span>
+                                <span>Ikke bekymret</span>
+                                <span>Ekstremt bekymret</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div className="slider-question">
+                        <h2>Hva er din tidligere erfaring eller kunnskap om deepfakes?</h2>
+                        <div className="slider-container">
+                            <input
+                                type="range"
+                                min="0"
+                                max="100"
+                                step="10"
+                                value={deepfakeAwareness}
+                                style={{ '--slider-percentage': `${deepfakeAwareness}%` }}
+                                onChange={(e) => {
+                                    setDeepfakeAwareness(e.target.value);
+                                    e.target.style.setProperty('--slider-percentage', `${e.target.value}%`);
+                                }}
+                            />
+                            <div className="slider-labels">
+                                <span>Ingen kunnskap</span>
+                                <span>Veldig god kunnskap</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div className="slider-question">
+                        <h2>Hvor overraskende var det manipulerte bildet du så?</h2>
+                        <div className="slider-container">
+                            <input
+                                type="range"
+                                min="0"
+                                max="100"
+                                step="10"
+                                value={surprise}
+                                style={{ '--slider-percentage': `${surprise}%` }}
+                                onChange={(e) => {
+                                    setSurprise(e.target.value);
+                                    e.target.style.setProperty('--slider-percentage', `${e.target.value}%`);
+                                }}
+                            />
+                            <div className="slider-labels">
+                                <span>Ikke overraskende</span>
+                                <span>Ekstremt overraskende</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div className="slider-question">
+                        <h2>Hvor ubehagelig var det å se deg selv i det manipulerte scenariet?</h2>
+                        <div className="slider-container">
+                            <input
+                                type="range"
+                                min="0"
+                                max="100"
+                                step="10"
+                                value={discomfort}
+                                style={{ '--slider-percentage': `${discomfort}%` }}
+                                onChange={(e) => {
+                                    setDiscomfort(e.target.value);
+                                    e.target.style.setProperty('--slider-percentage', `${e.target.value}%`);
+                                }}
+                            />
+                            <div className="slider-labels">
+                                <span>Ikke ubehagelig</span>
+                                <span>Ekstremt ubehagelig</span>
                             </div>
                         </div>
                     </div>
 
                     <div className="input-question">
-                        <p>How did it feel to see yourself depicted in scenarios you never participated in?</p>
+                        <h2>Hvordan har denne opplevelsen påvirket din oppfatning av risikoene ved å dele personlig informasjon på nettet?</h2>
                         <textarea
-                            value={userInput}
-                            onChange={(e) => setUserInput(e.target.value)}
+                            value={perceptionChange}
+                            onChange={(e) => setPerceptionChange(e.target.value)}
+                            placeholder="Type your feedback here..."
+                        />
+                    </div>
+
+                    <div className="input-question">
+                        <h2>Tror du at denne typen installasjon kan bidra til økt bevissthet om deepfakes blant folk
+                            generelt?</h2>
+                        <div className="button-container">
+                            {awarenessOptions.map((option) => (
+                                <button
+                                    key={option.value}
+                                    onClick={(e) => {
+                                        e.preventDefault();
+                                        setAwarenessImpact(option.value);
+                                    }}
+                                    className={`select-button ${awarenessImpact === option.value ? 'selected' : ''}`}
+                                >
+                                    {option.label}
+                                </button>
+                            ))}
+                        </div>
+                    </div>
+
+                    <div className="input-question">
+                        <h2>Har du noen forslag til forbedringer eller endringer i prototypen?</h2>
+                        <textarea
+                            value={improvementSuggestion}
+                            onChange={(e) => setImprovementSuggestion(e.target.value)}
                             placeholder="Type your feedback here..."
                         />
                     </div>
 
                     <div className="button-container">
-                        <button type="submit" className="button">SUBMIT!</button>
+                        <button className="form-button" onClick={handleSubmit}>Submit Feedback</button>
                     </div>
                 </form>
             </div>
