@@ -15,7 +15,7 @@
 .pages-container {
     display: flex;
     flex-direction: column;
-    justify-content: center;
+    justify-content: flex-start;
     align-content: center;
     max-height: 100vh;
     padding: 40px;
@@ -56,6 +56,7 @@ p {
 .button-container {
     display: flex;
     justify-content: center;
+    margin-bottom: 20px;
 }
 
 .button {

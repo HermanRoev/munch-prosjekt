@@ -3,7 +3,9 @@
 }
 
 form {
-    gap: 30px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px; /* Adjust as needed */
 }
 
 .rating {
@@ -17,7 +19,7 @@ span {
     text-align: center;
     font-size: 1rem;
     color: #fff;
-    font-weight: 900; /* Increase font-weight */
+    font-weight: 400; /* Increase font-weight */
     margin-top: 10px; /* Adjust spacing between emoji and text */
 }
 
@@ -52,13 +54,6 @@ span {
     color: green;
 }
 
-p {
-    font-size: 1.5rem;
-    font-weight: bold;
-    color: #fff;
-    margin: 20px;
-}
-
 .slider-container {
     position: relative;
     padding: 0 10px;
@@ -70,6 +65,30 @@ p {
     color: #fff;
     padding: 0 10px;
 }
+
+input[type='number']{
+    width: 96%; /* Consistent width */
+    -webkit-appearance: none; /* Override default CSS styles by the browser for sliders */
+    height: 20px;
+    border-radius: 10px;
+    background-color: rgba(0, 0, 0, 0.4);
+    border: 1px solid #6b9488;
+    color: #fafafa;
+    margin: 10px;
+    padding: 10px;
+}
+
+select {
+    width: 98%;
+    padding: 10px;
+    margin: 10px;
+    background-color: rgba(0, 0, 0, 0.4);
+    font-size: 1em;
+    border-radius: 10px;
+    border: 1px solid #6b9488;
+    color: #fafafa;
+}
+
 
 input[type='range'] {
     width: 100%; /* Make the slider fill the parent element */
@@ -126,7 +145,7 @@ input[type='range']::-moz-range-progress {
 }
 
 textarea {
-    width: 98%;
+    width: 97%;
     margin: 10px;
     background-color: rgba(0, 0, 0, 0.4);
     height: 7.5vh;
@@ -140,8 +159,4 @@ textarea {
 
 textarea:focus {
     outline: none;
-}
-
-.button {
-    margin: 0; /* Adjusted margin to em for consistency */
 }
