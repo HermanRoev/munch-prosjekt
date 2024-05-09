@@ -1,21 +1,22 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import PageContainer from '../components/PageContainer';
+import AgeSelector  from "../components/AgeSelector";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faAngry, faFrown, faMeh, faSmile, faGrinStars } from '@fortawesome/free-regular-svg-icons';
 import '../css/FeedbackPage.css';
 
 const FeedbackPage = () => {
     const navigate = useNavigate();
-    const [age, setAge] = useState(0);
+    const [age, setAge] = useState(null);
     const [gender, setGender] = useState('');
-    const [socialMediaUsage, setSocialMediaUsage] = useState(50);
-    const [privacyConcern, setPrivacyConcern] = useState(50);
-    const [deepfakeAwareness, setDeepfakeAwareness] = useState(50);
-    const [surprise, setSurprise] = useState(50);
-    const [discomfort, setDiscomfort] = useState(50);
-    const [perceptionChange, setPerceptionChange] = useState(50);
-    const [awarenessImpact, setAwarenessImpact] = useState(50);
+    const [socialMediaUsage, setSocialMediaUsage] = useState(0);
+    const [privacyConcern, setPrivacyConcern] = useState(0);
+    const [deepfakeAwareness, setDeepfakeAwareness] = useState(0);
+    const [surprise, setSurprise] = useState(0);
+    const [discomfort, setDiscomfort] = useState(0);
+    const [perceptionChange, setPerceptionChange] = useState('');
+    const [awarenessImpact, setAwarenessImpact] = useState(0);
     const [improvementSuggestion, setImprovementSuggestion] = useState('');
     const [rating, setRating] = useState(null);
 
@@ -37,26 +38,45 @@ const FeedbackPage = () => {
         { value: 'Superb', icon: faGrinStars, color: 'green' },
     ];
 
+    const genderOptions = [
+        { label: "Male", value: "male" },
+        { label: "Female", value: "female" },
+        { label: "Other", value: "other" },
+        { label: "Prefer not to say", value: "prefer_not_to_say" }
+    ];
+
+    const awarenessOptions = [
+        { label: "Ja", value: "yes" },
+        { label: "Nei", value: "no" },
+        { label: "Usikker", value: "unsure" },
+    ];
+
     return (
         <PageContainer>
             <div className="pages-container">
                 <div className="header-container">
                     <h1>Rate Your Experience</h1>
                 </div>
-                <form onSubmit={handleSubmit}>
+                <form>
                     <div className="input-question">
                         <h2>Participant Information:</h2>
-                        <label><b>Age:</b> <br></br>
-                            <input type="number" min="0" max="100" value={age} onChange={e => setAge(e.target.value)} /></label>
-                        <label><b>Gender:</b> <br></br>
-                            <select value={gender} onChange={e => setGender(e.target.value)}>
-                                <option value="">Select...</option>
-                                <option value="male">Male</option>
-                                <option value="female">Female</option>
-                                <option value="other">Other</option>
-                                <option value="prefer_not_to_say">Prefer not to say</option>
-                            </select>
-                        </label>
+                        <h2>Age:</h2>
+                        <AgeSelector onChange={(newAge) => setAge(newAge)}/>
+                        <h2>Gender:</h2>
+                        <div className="button-container">
+                            {genderOptions.map((option) => (
+                                <button
+                                    key={option.value}
+                                    onClick={(e) => {
+                                        e.preventDefault();
+                                        setGender(option.value);
+                                    }}
+                                    className={`select-button ${gender === option.value ? 'selected' : ''}`}
+                                >
+                                    {option.label}
+                                </button>
+                            ))}
+                        </div>
                     </div>
 
                     <div>
@@ -84,7 +104,9 @@ const FeedbackPage = () => {
                                 type="range"
                                 min="0"
                                 max="100"
+                                step="10"
                                 value={socialMediaUsage}
+                                style={{ '--slider-percentage': `${socialMediaUsage}%` }}
                                 onChange={(e) => {
                                     setSocialMediaUsage(e.target.value);
                                     e.target.style.setProperty('--slider-percentage', `${e.target.value}%`);
@@ -98,21 +120,23 @@ const FeedbackPage = () => {
                     </div>
 
                     <div className="slider-question">
-                        <h2>På en skala fra 1 til 5, hvor bekymret er du for personvern på internett?</h2>
+                        <h2>Hvor bekymret er du for personvern på internett?</h2>
                         <div className="slider-container">
                             <input
                                 type="range"
                                 min="0"
                                 max="100"
+                                step="10"
                                 value={privacyConcern}
+                                style={{ '--slider-percentage': `${privacyConcern}%` }}
                                 onChange={(e) => {
                                     setPrivacyConcern(e.target.value);
                                     e.target.style.setProperty('--slider-percentage', `${e.target.value}%`);
                                 }}
                             />
                             <div className="slider-labels">
-                                <span>1: Ikke bekymret</span>
-                                <span>5: Ekstremt bekymret</span>
+                                <span>Ikke bekymret</span>
+                                <span>Ekstremt bekymret</span>
                             </div>
                         </div>
                     </div>
@@ -124,7 +148,9 @@ const FeedbackPage = () => {
                                 type="range"
                                 min="0"
                                 max="100"
+                                step="10"
                                 value={deepfakeAwareness}
+                                style={{ '--slider-percentage': `${deepfakeAwareness}%` }}
                                 onChange={(e) => {
                                     setDeepfakeAwareness(e.target.value);
                                     e.target.style.setProperty('--slider-percentage', `${e.target.value}%`);
@@ -138,41 +164,45 @@ const FeedbackPage = () => {
                     </div>
 
                     <div className="slider-question">
-                        <h2>På en skala fra 1 til 5, hvor overraskende var det manipulerte bildet du så?</h2>
+                        <h2>Hvor overraskende var det manipulerte bildet du så?</h2>
                         <div className="slider-container">
                             <input
                                 type="range"
                                 min="0"
                                 max="100"
+                                step="10"
                                 value={surprise}
+                                style={{ '--slider-percentage': `${surprise}%` }}
                                 onChange={(e) => {
                                     setSurprise(e.target.value);
                                     e.target.style.setProperty('--slider-percentage', `${e.target.value}%`);
                                 }}
                             />
                             <div className="slider-labels">
-                                <span>1: Ikke overraskende</span>
-                                <span>5: Ekstremt overraskende</span>
+                                <span>Ikke overraskende</span>
+                                <span>Ekstremt overraskende</span>
                             </div>
                         </div>
                     </div>
 
                     <div className="slider-question">
-                        <h2>På en skala fra 1 til 5, hvor ubehagelig var det å se deg selv i det manipulerte scenariet?</h2>
+                        <h2>Hvor ubehagelig var det å se deg selv i det manipulerte scenariet?</h2>
                         <div className="slider-container">
                             <input
                                 type="range"
                                 min="0"
                                 max="100"
+                                step="10"
                                 value={discomfort}
+                                style={{ '--slider-percentage': `${discomfort}%` }}
                                 onChange={(e) => {
                                     setDiscomfort(e.target.value);
                                     e.target.style.setProperty('--slider-percentage', `${e.target.value}%`);
                                 }}
                             />
                             <div className="slider-labels">
-                                <span>1: Ikke ubehagelig</span>
-                                <span>5: Ekstremt ubehagelig</span>
+                                <span>Ikke ubehagelig</span>
+                                <span>Ekstremt ubehagelig</span>
                             </div>
                         </div>
                     </div>
@@ -187,13 +217,22 @@ const FeedbackPage = () => {
                     </div>
 
                     <div className="input-question">
-                        <h2>Tror du at denne typen installasjon kan bidra til økt bevissthet om deepfakes blant folk generelt?</h2>
-                        <select value={awarenessImpact} onChange={(e) => setAwarenessImpact(e.target.value)}>
-                            <option value="">Select...</option>
-                            <option value="yes">Ja</option>
-                            <option value="no">Nei</option>
-                            <option value="unsure">Usikker</option>
-                        </select>
+                        <h2>Tror du at denne typen installasjon kan bidra til økt bevissthet om deepfakes blant folk
+                            generelt?</h2>
+                        <div className="button-container">
+                            {awarenessOptions.map((option) => (
+                                <button
+                                    key={option.value}
+                                    onClick={(e) => {
+                                        e.preventDefault();
+                                        setAwarenessImpact(option.value);
+                                    }}
+                                    className={`select-button ${awarenessImpact === option.value ? 'selected' : ''}`}
+                                >
+                                    {option.label}
+                                </button>
+                            ))}
+                        </div>
                     </div>
 
                     <div className="input-question">
@@ -206,7 +245,7 @@ const FeedbackPage = () => {
                     </div>
 
                     <div className="button-container">
-                        <button type="submit" className="button">Submit Feedback</button>
+                        <button className="form-button" onClick={handleSubmit}>Submit Feedback</button>
                     </div>
                 </form>
             </div>

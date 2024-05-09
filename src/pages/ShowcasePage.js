@@ -25,7 +25,7 @@ const ShowcasePage = () => {
                     <img src={overlayImage} alt="Overlay image" className="overlay-image"/> {/* Add the overlay image */}
                 </div>
                 <div className="button-container">
-                    <button className="button" onClick={handleAccept}>PRESS HERE FOR FEEDBACK!</button>
+                    <button className="form-button" onClick={handleAccept}>PRESS HERE FOR FEEDBACK!</button>
                 </div>
             </div>
         </PageContainer>

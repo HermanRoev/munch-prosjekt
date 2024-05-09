@@ -57,7 +57,7 @@ const CapturePage = () => {
                             <button onClick={continueWithImage} className="button">CONTINUE</button>
                         </div>
                     ) : (
-                        <button onClick={capture} className="button">CAPTURE SELFIE</button>
+                        <button onClick={capture} className="form-button">CAPTURE SELFIE</button>
                     )}
                 </div>
             </div>

@@ -64,7 +64,7 @@ const TermsPage = () => {
                     </label>
                 </div>
                 <div className="button-container">
-                    <button className="button" onClick={handleContinue}>CONTINUE</button>
+                    <button className="form-button" onClick={handleContinue}>CONTINUE</button>
                 </div>
             </div>
         </PageContainer>

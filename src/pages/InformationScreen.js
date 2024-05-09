@@ -31,7 +31,7 @@ const InformationScreen = () => {
                     and ventures into new, thought-provoking territories.
                 </p>
                 <div className="button-container">
-                    <button className="button" onClick={handleAccept}>PRESS HERE TO TRY!</button>
+                    <button className="form-button" onClick={handleAccept}>PRESS HERE TO TRY!</button>
                 </div>
             </div>
         </PageContainer>

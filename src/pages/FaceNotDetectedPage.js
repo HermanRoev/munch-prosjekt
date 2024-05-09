@@ -41,8 +41,8 @@ const FaceNotDetectedPage = () => {
                     Ready to try again?
                 </h2>
                 <div className="button-container">
-                    <button onClick={handleTryAgain} className="button">TRY AGAIN</button>
-                    <button onClick={handleExit} className="button">EXIT</button>
+                    <button onClick={handleTryAgain} className="form-button">TRY AGAIN</button>
+                    <button onClick={handleExit} className="form-button">EXIT</button>
                 </div>
             </div>
         </PageContainer>
