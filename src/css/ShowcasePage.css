@@ -4,7 +4,7 @@
     margin: auto; /* Center the container */
 }
 
-.example-container {
+.showcase-container {
     width: 100%; /* Take up full width of the parent container */
     display: flex;
     justify-content: center;
@@ -12,7 +12,7 @@
     position: relative; /* Make this a positioned element for absolute positioning of children */
 }
 
-.example-image {
+.showcase-image {
     width: 100%;
     height: 100%;
     object-fit: cover; /* Use cover to maintain aspect ratio while filling parent */
@@ -20,10 +20,8 @@
 
 .overlay-image {
     position: absolute;
-    top: 50%;
-    left: 50%;
+    right: 45.5%;
     width: 50%;
-    height: 78%;
+    height: 88%;
     object-fit: contain;
-    transform: translate(-85%, -50%);
 }

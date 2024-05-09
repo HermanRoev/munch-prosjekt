@@ -1,11 +1,11 @@
 import React from 'react';
 import {useLocation, useNavigate} from 'react-router-dom';
 import PageContainer from '../components/PageContainer';
-import '../css/ExamplePage.css'; // Make sure the CSS file is in the same directory
-import exampleTestImage from '../images/example_test.png'; // Import the image directly
+import '../css/ShowcasePage.css'; // Make sure the CSS file is in the same directory
+import showcaseTestImage from '../images/showcase_insta.png'; // Import the image directly
 import overlayImage from '../images/gen_test.png'; // Import the overlay image
 
-const ExamplePage = () => {
+const ShowcasePage = () => {
     const navigate = useNavigate();
 
     const handleAccept = () => {
@@ -20,8 +20,8 @@ const ExamplePage = () => {
                     <h1>Deepfake Selfie</h1>
                 </div>
 
-                <div className="example-container">
-                    <img src={exampleTestImage} alt="Test image" className="example-image"/> {/* Use the imported image here */}
+                <div className="showcase-container">
+                    <img src={showcaseTestImage} alt="Test image" className="showcase-image"/> {/* Use the imported image here */}
                     <img src={overlayImage} alt="Overlay image" className="overlay-image"/> {/* Add the overlay image */}
                 </div>
                 <div className="button-container">
@@ -32,4 +32,4 @@ const ExamplePage = () => {
     );
 }
 
-export default ExamplePage;
+export default ShowcasePage;
