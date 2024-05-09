@@ -3,48 +3,54 @@ import { useLocation, useNavigate } from 'react-router-dom';
 import PageContainer from '../components/PageContainer';
 import '../css/ProcessingPage.css'; // Make sure the CSS file is in the same directory
 
-const ProcessingPage = ({ mockImage }) => {
+const ProcessingPage = ({ inputImage }) => {
     const { state } = useLocation();
     const navigate = useNavigate();
     const [processedImage, setProcessedImage] = useState(null);
-
-    const image = mockImage || state?.image;
+    const [image, setImage] = useState(null);
 
     useEffect(() => {
-        // Simulate sending the image to the backend and receiving a processed image
-        const processImage = async () => {
-            const formData = new FormData();
-            formData.append('image', image); // Use the mock image if it's provided
+        if (!inputImage && state?.image) {
+            setImage(state.image);
+        } else if (inputImage) {
+            setImage(inputImage);
+        }
+    }, [inputImage, state?.image]);
 
-            try {
-                const response = await fetch('https://your-backend-url.com/process', {
-                    method: 'POST',
-                    body: formData,
-                });
+    useEffect(() => {
+        if (image && !processedImage) { // Only process if image is set and not processed yet
+            const processImage = async () => {
+                const imageBlob = await fetch(image).then(response => response.blob());
+                const formData = new FormData();
+                formData.append('file', imageBlob, 'image.png');
 
-                if (!response.ok) {
-                    throw new Error('Network response was not ok');
+                try {
+                    const response = await fetch('http://178.232.54.31:8189/generate', {
+                        method: 'POST',
+                        body: formData,
+                    });
+
+                    if (!response.ok) {
+                        throw new Error('Network response was not ok');
+                    }
+
+                    const blob = await response.blob();
+                    const imageUrl = URL.createObjectURL(blob);
+                    setProcessedImage(imageUrl);
+                } catch (error) {
+                    console.error('There was a problem with the fetch operation:', error);
                 }
+            };
+            processImage();
+        }
+    }, [image]); // Dependency on image ensures this runs only when image changes
 
-                const result = await response.json();
-                setProcessedImage(result.processedImage); // Assuming the response contains the processed image
-            } catch (error) {
-                console.error('There was a problem with the fetch operation:', error);
-            }
-        };
-
-        processImage();
-    }, [image, navigate]);
-
-    // Add a new useEffect hook for the delay and navigation
     useEffect(() => {
-        const timer = setTimeout(() => {
-            navigate('/showcase'); // replace '/feedback' with the actual path to the FeedbackPage
-        }, 10000); // 10 seconds
-
-        // Cleanup function to clear the timeout if the component unmounts before the timeout finishes
-        return () => clearTimeout(timer);
-    }, [navigate]); // dependency array
+        if (processedImage) {
+            // Navigate to the next page with the processed image
+            navigate('/example', { state: { image: processedImage } });
+        }
+    }, [processedImage, navigate]);
 
     return (
         <PageContainer>
