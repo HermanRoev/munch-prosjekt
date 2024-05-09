@@ -1,16 +1,16 @@
 import React from 'react';
-import {useLocation, useNavigate} from 'react-router-dom';
+import { useNavigate, useLocation } from 'react-router-dom';
 import PageContainer from '../components/PageContainer';
 import '../css/ShowcasePage.css'; // Make sure the CSS file is in the same directory
-import showcaseTestImage from '../images/showcase_insta.png'; // Import the image directly
-import overlayImage from '../images/gen_test.png'; // Import the overlay image
 
-const ShowcasePage = () => {
+const ShowcasePage = ({ inputImage }) => {
     const navigate = useNavigate();
+    const { state } = useLocation();
+    const image = inputImage || state?.image
 
     const handleAccept = () => {
         // Navigate to the feedback when the user presses continue
-        navigate('/feedback');
+        navigate('/showcase');
     };
 
     return (
@@ -20,12 +20,11 @@ const ShowcasePage = () => {
                     <h1>Deepfake Selfie</h1>
                 </div>
 
-                <div className="showcase-container">
-                    <img src={showcaseTestImage} alt="Test image" className="showcase-image"/> {/* Use the imported image here */}
-                    <img src={overlayImage} alt="Overlay image" className="overlay-image"/> {/* Add the overlay image */}
+                <div className="example-container">
+                    <img src={image} alt="Test image" className="example-image"/> {/* Use the imported image here */}
                 </div>
                 <div className="button-container">
-                    <button className="form-button" onClick={handleAccept}>PRESS HERE FOR FEEDBACK!</button>
+                    <button className="button" onClick={handleAccept}>PRESS HERE FOR FEEDBACK!</button>
                 </div>
             </div>
         </PageContainer>
