@@ -4,7 +4,6 @@
     align-items: center;
     height: 100vh; /* Use full viewport height */
     width: 100vw;
-    padding: 20px;
     box-sizing: border-box;
     background: url('../images/background_ai_project.png') no-repeat center center fixed;
     background-size: cover;
