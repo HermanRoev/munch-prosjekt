@@ -38,3 +38,17 @@
     transform: scaleX(-1); /* Mirror the webcam and captured image */
 }
 
+.webcam-overlay-container {
+    position: relative;
+}
+
+.face-overlay {
+    position: absolute;
+    opacity: 30%;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none; /* Allows clicks to pass through to the webcam */
+    scale: 60%;
+}

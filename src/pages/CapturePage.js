@@ -3,6 +3,7 @@ import Webcam from 'react-webcam';
 import { useNavigate } from 'react-router-dom';
 import PageContainer from '../components/PageContainer';
 import '../css/CapturePage.css';
+import overlay from '../images/face-svg.svg';
 
 const videoConstraints = {
     width: 2160,  // Higher width for high-res capture
@@ -47,13 +48,16 @@ const CapturePage = () => {
                         {imageSrc ? (
                             <img src={imageSrc} alt="Captured" className="captured-image mirrored"/>
                         ) : (
-                            <Webcam
-                                audio={false}
-                                ref={webcamRef}
-                                screenshotFormat="image/jpeg"
-                                videoConstraints={videoConstraints}
-                                className="webcam-view mirrored"
-                            />
+                            <div className="webcam-overlay-container">
+                                <Webcam
+                                    audio={false}
+                                    ref={webcamRef}
+                                    screenshotFormat="image/jpeg"
+                                    videoConstraints={videoConstraints}
+                                    className="webcam-view mirrored"
+                                />
+                                <img src={overlay} alt="Face Outline" className="face-overlay"/>
+                            </div>
                         )}
                     </div>
                     <canvas ref={canvasRef} style={{ display: 'none' }}></canvas>

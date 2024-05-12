@@ -1,0 +1,10 @@
+<svg width="160px" height="240px" viewBox="0 0 160 240" xmlns="http://www.w3.org/2000/svg">
+    <path d="M 10 20 L 70 20" fill="none" stroke="white" stroke-width="4"/>
+    <path d="M 90 20 L 150 20" fill="none" stroke="white" stroke-width="4"/>
+    <path d="M 10 220 L 70 220" fill="none" stroke="white" stroke-width="4"/>
+    <path d="M 90 220 L 150 220" fill="none" stroke="white" stroke-width="4"/>
+    <path d="M 10 20 L 10 110" fill="none" stroke="white" stroke-width="4"/>
+    <path d="M 10 130 L 10 220" fill="none" stroke="white" stroke-width="4"/>
+    <path d="M 150 20 L 150 110" fill="none" stroke="white" stroke-width="4"/>
+    <path d="M 150 130 L 150 220" fill="none" stroke="white" stroke-width="4"/>
+</svg>
