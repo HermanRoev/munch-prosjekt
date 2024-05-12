@@ -1,4 +1,4 @@
-import { BrowserRouter as Router, Route, Link, Routes } from 'react-router-dom';
+import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import InformationScreen from "./pages/InformationScreen";
 import TermsPage from "./pages/TermsPage";
 import CapturePage from "./pages/CapturePage";
@@ -7,6 +7,7 @@ import FaceNotDetectedPage from "./pages/FaceNotDetectedPage";
 import FeedbackPage from "./pages/FeedbackPage";
 import PageContainer from "./components/PageContainer";
 import ShowcasePage from "./pages/ShowcasePage";
+import MultipleFacesPage from "./pages/MultipleFacesPage";
 
 function App() {
   return (
@@ -20,6 +21,7 @@ function App() {
             <Route path="/noface" element={<FaceNotDetectedPage />} />
             <Route path="/showcase" element={<ShowcasePage />} />
             <Route path="/feedback" element={<FeedbackPage />} />
+            <Route path="/moface" element={<MultipleFacesPage />} />
           </Routes>
         </PageContainer>
       </Router>

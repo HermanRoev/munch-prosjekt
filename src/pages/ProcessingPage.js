@@ -3,47 +3,46 @@ import { useLocation, useNavigate } from 'react-router-dom';
 import PageContainer from '../components/PageContainer';
 import '../css/ProcessingPage.css'; // Make sure the CSS file is in the same directory
 
-const ProcessingPage = ({ inputImage }) => {
-    const { state } = useLocation();
+const ProcessingPage = () => {
+    const location = useLocation();
+    const image = location.state?.image;
     const navigate = useNavigate();
     const [processedImage, setProcessedImage] = useState(null);
-    const [image, setImage] = useState(null);
+
 
     useEffect(() => {
-        if (!inputImage && state?.image) {
-            setImage(state.image);
-        } else if (inputImage) {
-            setImage(inputImage);
-        }
-    }, [inputImage, state?.image]);
-
-    useEffect(() => {
-        if (image && !processedImage) { // Only process if image is set and not processed yet
+        if (image) { // Only process if image
             const processImage = async () => {
                 const imageBlob = await fetch(image).then(response => response.blob());
                 const formData = new FormData();
                 formData.append('file', imageBlob, 'image.png');
 
-                try {
-                    const response = await fetch('http://178.232.54.31:8189/generate', {
-                        method: 'POST',
-                        body: formData,
-                    });
 
-                    if (!response.ok) {
-                        throw new Error('Network response was not ok');
+                const response = await fetch('http://178.232.54.31:8189/generate', {
+                    method: 'POST',
+                    body: formData,
+                });
+
+                if (!response.ok) {
+                    const data = await response.json();
+                    if (data.errorcode === 1) {
+                        // Navigate to the face not detected page
+                        navigate('/noface');
                     }
-
+                    else if (data.errorcode === 2) {
+                        const faces = data.faces;
+                        navigate('/moface', { state: { faces } })
+                    }
+                }
+                else {
                     const blob = await response.blob();
                     const imageUrl = URL.createObjectURL(blob);
                     setProcessedImage(imageUrl);
-                } catch (error) {
-                    console.error('There was a problem with the fetch operation:', error);
                 }
             };
             processImage();
         }
-    }, [processedImage, image]); // Dependency on image ensures this runs only when image changes
+    }, [processedImage, image, navigate]); // Dependency on image ensures this runs only when image changes
 
     useEffect(() => {
         if (processedImage) {

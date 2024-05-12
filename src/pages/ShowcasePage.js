@@ -4,10 +4,10 @@ import PageContainer from '../components/PageContainer';
 import '../css/ShowcasePage.css'; // Make sure the CSS file is in the same directory
 import showcase from '../images/showcase_insta.png';
 
-const ShowcasePage = ({ inputImage }) => {
+const ShowcasePage = () => {
     const navigate = useNavigate();
-    const { state } = useLocation();
-    const overlay = inputImage || state?.image
+    const location = useLocation();
+    const overlay = location.state?.image;
 
     const handleAccept = () => {
         // Navigate to the feedback when the user presses continue

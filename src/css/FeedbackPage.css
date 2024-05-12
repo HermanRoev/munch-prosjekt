@@ -46,19 +46,19 @@ span {
 }
 
 .rating-icon-0:hover {
-    color: red;
+    color: #FF073A;
 }
 
 .rating-icon-1:hover {
-    color: orange;
+    color: #FF7E41;
 }
 
 .rating-icon-2:hover {
-    color: yellow;
+    color: #FFFF36;
 }
 
 .rating-icon-3:hover {
-    color: #4CAF50;
+    color: #a2ff00;
 }
 
 .rating-icon-4:hover {

@@ -48,10 +48,10 @@ const FeedbackPage = () => {
     };
 
     const ratingIcons = [
-        { value: 'Terrible', icon: faAngry, color: 'red' },
-        { value: 'Bad', icon: faFrown, color: 'orange' },
-        { value: 'So-so', icon: faMeh, color: 'yellow' },
-        { value: 'Good', icon: faSmile, color: '#4CAF50' },
+        { value: 'Terrible', icon: faAngry, color: '#FF073A' },
+        { value: 'Bad', icon: faFrown, color: '#FF7E41' },
+        { value: 'So-so', icon: faMeh, color: '#FFFF36' },
+        { value: 'Good', icon: faSmile, color: '#a2ff00' },
         { value: 'Superb', icon: faGrinStars, color: '#0F0' },
     ];
 
@@ -122,7 +122,7 @@ const FeedbackPage = () => {
                                 type="range"
                                 min="0"
                                 max="100"
-                                step="10"
+                                step="1"
                                 value={socialMediaUsage}
                                 style={{ '--slider-percentage': `${socialMediaUsage}%` }}
                                 onChange={(e) => {
@@ -144,7 +144,7 @@ const FeedbackPage = () => {
                                 type="range"
                                 min="0"
                                 max="100"
-                                step="10"
+                                step="1"
                                 value={privacyConcern}
                                 style={{ '--slider-percentage': `${privacyConcern}%` }}
                                 onChange={(e) => {
@@ -166,7 +166,7 @@ const FeedbackPage = () => {
                                 type="range"
                                 min="0"
                                 max="100"
-                                step="10"
+                                step="1"
                                 value={deepfakeAwareness}
                                 style={{ '--slider-percentage': `${deepfakeAwareness}%` }}
                                 onChange={(e) => {
@@ -188,7 +188,7 @@ const FeedbackPage = () => {
                                 type="range"
                                 min="0"
                                 max="100"
-                                step="10"
+                                step="1"
                                 value={surprise}
                                 style={{ '--slider-percentage': `${surprise}%` }}
                                 onChange={(e) => {
@@ -210,7 +210,7 @@ const FeedbackPage = () => {
                                 type="range"
                                 min="0"
                                 max="100"
-                                step="10"
+                                step="1"
                                 value={discomfort}
                                 style={{ '--slider-percentage': `${discomfort}%` }}
                                 onChange={(e) => {
