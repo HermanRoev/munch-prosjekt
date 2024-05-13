@@ -8,20 +8,33 @@ import '../css/FeedbackPage.css';
 
 const FeedbackPage = () => {
     const navigate = useNavigate();
-    const [age, setAge] = useState(null);
+    const [age, setAge] = useState(30);
     const [gender, setGender] = useState('');
-    const [socialMediaUsage, setSocialMediaUsage] = useState(0);
-    const [privacyConcern, setPrivacyConcern] = useState(0);
-    const [deepfakeAwareness, setDeepfakeAwareness] = useState(0);
-    const [surprise, setSurprise] = useState(0);
-    const [discomfort, setDiscomfort] = useState(0);
+    const [socialMediaUsage, setSocialMediaUsage] = useState(null);
+    const [privacyConcern, setPrivacyConcern] = useState(null);
+    const [deepfakeAwareness, setDeepfakeAwareness] = useState(null);
+    const [surprise, setSurprise] = useState(null);
+    const [discomfort, setDiscomfort] = useState(null);
     const [perceptionChange, setPerceptionChange] = useState('');
-    const [awarenessImpact, setAwarenessImpact] = useState(0);
+    const [awarenessImpact, setAwarenessImpact] = useState(null);
     const [improvementSuggestion, setImprovementSuggestion] = useState('');
     const [rating, setRating] = useState(null);
 
+    const isFormValid = () => {
+        return age !== null && gender !== '' && socialMediaUsage !== null && privacyConcern !== null &&
+            deepfakeAwareness !== null && surprise !== null && discomfort !== null &&
+            perceptionChange !== '' && awarenessImpact !== null && improvementSuggestion !== '' &&
+            rating !== null;
+    };
+
     const handleSubmit = async (event) => {
         event.preventDefault();
+
+        if (!isFormValid()) {
+            alert('Please fill out all fields before submitting.');
+            return;
+        }
+
         const feedbackData = {
             age, gender, socialMediaUsage, privacyConcern, deepfakeAwareness, surprise,
             discomfort, perceptionChange, awarenessImpact, improvementSuggestion, rating
@@ -231,6 +244,7 @@ const FeedbackPage = () => {
                             value={perceptionChange}
                             onChange={(e) => setPerceptionChange(e.target.value)}
                             placeholder="Type your feedback here..."
+                            required
                         />
                     </div>
 
@@ -259,6 +273,7 @@ const FeedbackPage = () => {
                             value={improvementSuggestion}
                             onChange={(e) => setImprovementSuggestion(e.target.value)}
                             placeholder="Type your feedback here..."
+                            required
                         />
                     </div>
 

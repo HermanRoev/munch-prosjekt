@@ -1,7 +1,6 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import PageContainer from '../components/PageContainer';
-import '../css/FaceNotDetectedPage.css'; // Make sure the CSS file is in the same directory
 
 const FaceNotDetectedPage = () => {
     const navigate = useNavigate();

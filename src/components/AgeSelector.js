@@ -1,4 +1,6 @@
 import React, { useState, useRef } from 'react';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faPlus, faMinus } from '@fortawesome/free-solid-svg-icons';
 import '../css/AgeSelector.css';
 
 const AgeSelector = ({ onChange }) => {
@@ -15,10 +17,8 @@ const AgeSelector = ({ onChange }) => {
 
     const handleMouseMove = (e) => {
         const diff = lastY.current - e.clientY;
-        // Calculate new age based on the total pixels moved
-        // You can adjust the sensitivity with a divisor; here, every 10 pixels equals 1 year
         const newAge = initialAge.current + Math.floor(diff / 10);
-        if (newAge >= 0 && newAge <= 100) { // Keeping the age within reasonable limits
+        if (newAge >= 0 && newAge <= 100) {
             setAge(newAge);
             onChange(newAge);
         }
@@ -29,9 +29,23 @@ const AgeSelector = ({ onChange }) => {
         document.removeEventListener('mouseup', handleMouseUp);
     };
 
+    const increaseAge = (e) => {
+        e.preventDefault();
+        setAge(prevAge => Math.min(prevAge + 1, 100));
+    };
+
+    const decreaseAge = (e) => {
+        e.preventDefault();
+        setAge(prevAge => Math.max(prevAge - 1, 0));
+    };
+
     return (
         <div className="age-selector" onMouseDown={handleMouseDown}>
-            <div style={{ fontSize: '100px', textAlign: 'center' }}>{age}</div>
+            <div className="age-display">
+                <FontAwesomeIcon icon={faMinus} onClick={decreaseAge} className="age-icon" size="xl"/>
+                <div style={{fontSize: '100px', textAlign: 'center'}}>{age}</div>
+                <FontAwesomeIcon icon={faPlus} onClick={increaseAge} className="age-icon" size="xl"/>
+            </div>
         </div>
     );
 };

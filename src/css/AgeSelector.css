@@ -11,3 +11,24 @@
     font-family: 'Orbitron', sans-serif; /* Futuristic, digital font */
     border-radius: 5px; /* Slight rounding of corners for aesthetics */
 }
+
+.age-display {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 250px;
+}
+
+.age-icon {
+    position: absolute;
+    cursor: pointer;
+}
+
+.age-icon:first-child {
+    left: 0;
+}
+
+.age-icon:last-child {
+    right: 0;
+}

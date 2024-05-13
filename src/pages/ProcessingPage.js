@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, {useEffect, useRef, useState} from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 import PageContainer from '../components/PageContainer';
 import '../css/ProcessingPage.css'; // Make sure the CSS file is in the same directory
@@ -8,15 +8,16 @@ const ProcessingPage = () => {
     const image = location.state?.image;
     const navigate = useNavigate();
     const [processedImage, setProcessedImage] = useState(null);
-
+    const imageProcessing = useRef(false);
 
     useEffect(() => {
-        if (image) { // Only process if image
-            const processImage = async () => {
+    if (image && !imageProcessing.current) { // Only process if image
+        imageProcessing.current = true;
+        const processImage = async () => {
+            try {
                 const imageBlob = await fetch(image).then(response => response.blob());
                 const formData = new FormData();
                 formData.append('file', imageBlob, 'image.png');
-
 
                 const response = await fetch('http://178.232.54.31:8189/generate', {
                     method: 'POST',
@@ -24,14 +25,23 @@ const ProcessingPage = () => {
                 });
 
                 if (!response.ok) {
-                    const data = await response.json();
-                    if (data.errorcode === 1) {
-                        // Navigate to the face not detected page
-                        navigate('/noface');
-                    }
-                    else if (data.errorcode === 2) {
-                        const faces = data.faces;
-                        navigate('/moface', { state: { faces } })
+                    try {
+                        const data = await response.json();
+                        if (data.hasOwnProperty('errorcode')) {
+                            if (data.errorcode === 1) {
+                                // Navigate to the face not detected page
+                                navigate('/noface');
+                            } else if (data.errorcode === 2) {
+                                const faces = data.num_faces;
+                                navigate('/moface', {state: {faces}})
+                            }
+                        }
+                        else {
+                            navigate('/error')
+                        }
+                    } catch (error) {
+                        // If an error occurs when parsing the response, navigate to the error page
+                        navigate('/error');
                     }
                 }
                 else {
@@ -39,10 +49,14 @@ const ProcessingPage = () => {
                     const imageUrl = URL.createObjectURL(blob);
                     setProcessedImage(imageUrl);
                 }
-            };
-            processImage();
-        }
-    }, [processedImage, image, navigate]); // Dependency on image ensures this runs only when image changes
+            } catch (error) {
+                // If any error occurs, navigate to the error page
+                navigate('/error');
+            }
+        };
+        processImage();
+    }
+}, [image, navigate, processedImage]);
 
     useEffect(() => {
         if (processedImage) {

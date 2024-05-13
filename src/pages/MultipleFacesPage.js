@@ -1,7 +1,6 @@
 import React from 'react';
 import { useNavigate, useLocation } from 'react-router-dom';
 import PageContainer from '../components/PageContainer';
-import '../css/MultipleFacesPage.css'; // Make sure the CSS file is in the same directory
 
 const MultipleFacesPage = () => {
     const navigate = useNavigate();

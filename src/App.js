@@ -8,6 +8,7 @@ import FeedbackPage from "./pages/FeedbackPage";
 import PageContainer from "./components/PageContainer";
 import ShowcasePage from "./pages/ShowcasePage";
 import MultipleFacesPage from "./pages/MultipleFacesPage";
+import ErrorPage from "./pages/ErrorPage";
 
 function App() {
   return (
@@ -22,6 +23,7 @@ function App() {
             <Route path="/showcase" element={<ShowcasePage />} />
             <Route path="/feedback" element={<FeedbackPage />} />
             <Route path="/moface" element={<MultipleFacesPage />} />
+            <Route path="/error" element={<ErrorPage />} />
           </Routes>
         </PageContainer>
       </Router>
