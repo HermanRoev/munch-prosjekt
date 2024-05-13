@@ -58,7 +58,7 @@ const ProcessingPage = () => {
         };
         processImage();
     }
-}, [image, navigate, processedImage]);
+}, [code, image, navigate, processedImage]);
 
     useEffect(() => {
         if (processedImage) {
