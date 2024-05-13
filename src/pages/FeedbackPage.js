@@ -76,14 +76,14 @@ const FeedbackPage = () => {
     ];
 
     const awarenessOptions = [
-        { label: "Ja", value: "yes" },
-        { label: "Nei", value: "no" },
-        { label: "Usikker", value: "unsure" },
+        { label: "Yes", value: "yes" },
+        { label: "No", value: "no" },
+        { label: "Uncertain", value: "unsure" },
     ];
 
     return (
         <PageContainer>
-            <div className="pages-container" style={{ margin: 0, padding: 0 }}>
+            <div className="pages-container" style={{ margin: 0, padding: 0}}>
                 <div className="feedback-container">
                     <div className="header-container">
                         <h1>Participant feedback</h1>
@@ -129,7 +129,7 @@ const FeedbackPage = () => {
                     </div>
 
                     <div className="slider-question">
-                        <h2>Hvor ofte bruker du sosiale medier?</h2>
+                        <h2>How often do you use social media?</h2>
                         <div className="slider-container">
                             <input
                                 type="range"
@@ -144,14 +144,14 @@ const FeedbackPage = () => {
                                 }}
                             />
                             <div className="slider-labels">
-                                <span>Sjelden eller aldri</span>
-                                <span>Flere ganger om dagen</span>
+                                <span>Rarely or never</span>
+                                <span>Several times a day</span>
                             </div>
                         </div>
                     </div>
 
                     <div className="slider-question">
-                        <h2>Hvor bekymret er du for personvern på internett?</h2>
+                        <h2>How concerned are you about privacy on the internet?</h2>
                         <div className="slider-container">
                             <input
                                 type="range"
@@ -166,14 +166,14 @@ const FeedbackPage = () => {
                                 }}
                             />
                             <div className="slider-labels">
-                                <span>Ikke bekymret</span>
-                                <span>Ekstremt bekymret</span>
+                                <span>Not worried</span>
+                                <span>Extremely worried</span>
                             </div>
                         </div>
                     </div>
 
                     <div className="slider-question">
-                        <h2>Hva er din tidligere erfaring eller kunnskap om deepfakes?</h2>
+                        <h2>What is your previous experience or knowledge about deepfakes?</h2>
                         <div className="slider-container">
                             <input
                                 type="range"
@@ -188,14 +188,14 @@ const FeedbackPage = () => {
                                 }}
                             />
                             <div className="slider-labels">
-                                <span>Ingen kunnskap</span>
-                                <span>Veldig god kunnskap</span>
+                                <span>No knowledge</span>
+                                <span>Very good knowledge</span>
                             </div>
                         </div>
                     </div>
 
                     <div className="slider-question">
-                        <h2>Hvor overraskende var det manipulerte bildet du så?</h2>
+                        <h2>How surprising was the manipulated image you saw?</h2>
                         <div className="slider-container">
                             <input
                                 type="range"
@@ -210,14 +210,14 @@ const FeedbackPage = () => {
                                 }}
                             />
                             <div className="slider-labels">
-                                <span>Ikke overraskende</span>
-                                <span>Ekstremt overraskende</span>
+                                <span>Not surprising</span>
+                                <span>Extremely surprising</span>
                             </div>
                         </div>
                     </div>
 
                     <div className="slider-question">
-                        <h2>Hvor ubehagelig var det å se deg selv i det manipulerte scenariet?</h2>
+                        <h2>How uncomfortable was it to see yourself in the manipulated scenario?</h2>
                         <div className="slider-container">
                             <input
                                 type="range"
@@ -232,14 +232,14 @@ const FeedbackPage = () => {
                                 }}
                             />
                             <div className="slider-labels">
-                                <span>Ikke ubehagelig</span>
-                                <span>Ekstremt ubehagelig</span>
+                                <span>Not uncomfortable</span>
+                                <span>Extremely uncomfortable</span>
                             </div>
                         </div>
                     </div>
 
                     <div className="input-question">
-                        <h2>Hvordan har denne opplevelsen påvirket din oppfatning av risikoene ved å dele personlig informasjon på nettet?</h2>
+                        <h2>How has this experience affected your perception of the risks of sharing personal information online?</h2>
                         <textarea
                             value={perceptionChange}
                             onChange={(e) => setPerceptionChange(e.target.value)}
@@ -249,8 +249,7 @@ const FeedbackPage = () => {
                     </div>
 
                     <div className="input-question">
-                        <h2>Tror du at denne typen installasjon kan bidra til økt bevissthet om deepfakes blant folk
-                            generelt?</h2>
+                        <h2>Do you think this type of installation can contribute to increased awareness of deepfakes among people in general?</h2>
                         <div className="button-container">
                             {awarenessOptions.map((option) => (
                                 <button
@@ -268,7 +267,7 @@ const FeedbackPage = () => {
                     </div>
 
                     <div className="input-question">
-                        <h2>Har du noen forslag til forbedringer eller endringer i prototypen?</h2>
+                        <h2>Do you have any suggestions for improvements or changes to the prototype?</h2>
                         <textarea
                             value={improvementSuggestion}
                             onChange={(e) => setImprovementSuggestion(e.target.value)}

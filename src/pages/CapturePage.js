@@ -16,6 +16,7 @@ const CapturePage = () => {
     const canvasRef = useRef(null);  // Ref for the canvas to perform high-res capture
     const [imageSrc, setImageSrc] = useState(null);
     const navigate = useNavigate();
+    const [code, setCode] = useState("");
 
     const capture = useCallback(() => {
         const video = webcamRef.current.video;
@@ -34,7 +35,7 @@ const CapturePage = () => {
     };
 
     const continueWithImage = () => {
-        navigate('/processing', { state: { image: imageSrc } });
+        navigate('/processing', { state: { image: imageSrc, code: code } });
     };
 
     return (
@@ -65,6 +66,7 @@ const CapturePage = () => {
                         <div className="button-container">
                             <button onClick={retakeImage} className="form-button">TRY AGAIN</button>
                             <button onClick={continueWithImage} className="form-button">CONTINUE</button>
+                            <input type="text" value={code} onChange={(e) => setCode(e.target.value)}/>
                         </div>
                     ) : (
                         <div className="button-container">

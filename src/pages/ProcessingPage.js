@@ -6,6 +6,7 @@ import '../css/ProcessingPage.css'; // Make sure the CSS file is in the same dir
 const ProcessingPage = () => {
     const location = useLocation();
     const image = location.state?.image;
+    const code = location.state?.code;
     const navigate = useNavigate();
     const [processedImage, setProcessedImage] = useState(null);
     const imageProcessing = useRef(false);
@@ -18,6 +19,7 @@ const ProcessingPage = () => {
                 const imageBlob = await fetch(image).then(response => response.blob());
                 const formData = new FormData();
                 formData.append('file', imageBlob, 'image.png');
+                formData.append('code', code);
 
                 const response = await fetch('https://178.232.54.31:8189/generate', {
                     method: 'POST',
