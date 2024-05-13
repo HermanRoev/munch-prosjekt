@@ -19,7 +19,7 @@ const ProcessingPage = () => {
                 const formData = new FormData();
                 formData.append('file', imageBlob, 'image.png');
 
-                const response = await fetch('http://178.232.54.31:8189/generate', {
+                const response = await fetch('https://178.232.54.31:8189/generate', {
                     method: 'POST',
                     body: formData,
                 });

@@ -31,12 +31,20 @@ const AgeSelector = ({ onChange }) => {
 
     const increaseAge = (e) => {
         e.preventDefault();
-        setAge(prevAge => Math.min(prevAge + 1, 100));
+        setAge(prevAge => {
+            const newAge = Math.min(prevAge + 1, 100);
+            onChange(newAge);
+            return newAge;
+        });
     };
 
     const decreaseAge = (e) => {
         e.preventDefault();
-        setAge(prevAge => Math.max(prevAge - 1, 0));
+        setAge(prevAge => {
+            const newAge = Math.max(prevAge - 1, 0);
+            onChange(newAge);
+            return newAge;
+        });
     };
 
     return (

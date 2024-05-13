@@ -40,7 +40,7 @@ const FeedbackPage = () => {
             discomfort, perceptionChange, awarenessImpact, improvementSuggestion, rating
         };
         try {
-            const response = await fetch('http://178.232.54.31:8189/submit', {
+            const response = await fetch('https://178.232.54.31:8189/submit', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json'
