@@ -17,6 +17,13 @@ const CapturePage = () => {
     const [imageSrc, setImageSrc] = useState(null);
     const navigate = useNavigate();
     const [code, setCode] = useState("");
+    const [isCodeValid, setIsCodeValid] = useState(false);
+
+    const handleCodeChange = (e) => {
+        const newCode = e.target.value;
+        setCode(newCode);
+        setIsCodeValid(newCode.trim() !== "");
+    };
 
     const capture = useCallback(() => {
         const video = webcamRef.current.video;
@@ -34,8 +41,31 @@ const CapturePage = () => {
         setImageSrc(null);
     };
 
-    const continueWithImage = () => {
-        navigate('/processing', { state: { image: imageSrc, code: code } });
+    const continueWithImage = async () => {
+        if (!isCodeValid) {
+            alert('Please enter a valid code')
+            return;
+        }
+        try {
+            const response = await fetch('https://178.232.54.31:8189/validate', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({ code }),
+            });
+
+            if (!response.ok) {
+                throw new Error('Code validation failed');
+            }
+
+            if (response.ok) {
+                navigate('/processing', { state: { image: imageSrc } });
+            }
+        } catch (error) {
+            console.error('Error:', error);
+            alert('Wrong code or an error occurred. Please try again.');
+        }
     };
 
     return (
@@ -65,8 +95,10 @@ const CapturePage = () => {
                     {imageSrc ? (
                         <div className="button-container">
                             <button onClick={retakeImage} className="form-button">TRY AGAIN</button>
-                            <button onClick={continueWithImage} className="form-button">CONTINUE</button>
-                            <input type="text" value={code} onChange={(e) => setCode(e.target.value)}/>
+                            <button onClick={continueWithImage} className="form-button"> CONTINUE </button>
+                            <input type="text" id="code-input" value={code} onChange={handleCodeChange}
+                                   className="form-input"
+                                   placeholder="Code"/>
                         </div>
                     ) : (
                         <div className="button-container">

@@ -29,6 +29,28 @@ const AgeSelector = ({ onChange }) => {
         document.removeEventListener('mouseup', handleMouseUp);
     };
 
+    const handleTouchStart = (e) => {
+        lastY.current = e.touches[0].clientY;
+        initialAge.current = age;
+        document.addEventListener('touchmove', handleTouchMove, { passive: false });
+        document.addEventListener('touchend', handleTouchEnd);
+    };
+
+    const handleTouchMove = (e) => {
+        e.preventDefault(); // Prevent the default touch behavior on move
+        const diff = lastY.current - e.touches[0].clientY;
+        const newAge = initialAge.current + Math.floor(diff / 10);
+        if (newAge >= 0 && newAge <= 100) {
+            setAge(newAge);
+            onChange(newAge);
+        }
+    };
+
+    const handleTouchEnd = () => {
+        document.removeEventListener('touchmove', handleTouchMove);
+        document.removeEventListener('touchend', handleTouchEnd);
+    };
+
     const increaseAge = (e) => {
         e.preventDefault();
         setAge(prevAge => {
@@ -48,7 +70,7 @@ const AgeSelector = ({ onChange }) => {
     };
 
     return (
-        <div className="age-selector" onMouseDown={handleMouseDown}>
+        <div className="age-selector" onMouseDown={handleMouseDown} onTouchStart={handleTouchStart}>
             <div className="age-display">
                 <FontAwesomeIcon icon={faMinus} onClick={decreaseAge} className="age-icon" size="xl"/>
                 <div style={{fontSize: '100px', textAlign: 'center'}}>{age}</div>

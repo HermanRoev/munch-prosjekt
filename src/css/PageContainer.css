@@ -16,14 +16,14 @@
     flex-direction: column;
     justify-content: flex-start;
     align-content: center;
-    max-height: 100vh;
+    max-height: 100%;
     width: 100vw;
     position: relative;
     border-radius: 10px;
     margin: 1% 12.5% 1% 12.5%;
     text-align: left;
     background: none;
-    overflow: auto;
+    overflow-y: auto;
     scrollbar-width: none;
     -ms-overflow-style: none;
 }
@@ -81,4 +81,10 @@ p {
 .form-button:hover {
     background-color: rgba(255, 255, 255, 0.5); /* White fill on hover */
     color: #0F0; /* Green text on hover */
+}
+
+@media screen and (max-width: 600px) {
+    h1 {
+        font-size: 2em; /* Adjust this value as needed */
+    }
 }
